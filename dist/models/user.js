@@ -38,6 +38,10 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         require: true
     },
+    bio: {
+        type: String,
+        required: false
+    }
 });
 UserSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {

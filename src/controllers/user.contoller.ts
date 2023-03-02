@@ -25,7 +25,7 @@ export const signUp = async (req: Request,res: Response): Promise<Response> =>{
     //GUARDAR USUARIO
     const newUser = new usuarios(req.body);
     await newUser.save();
-    return res.status(201).json(newUser);
+    return res.status(201).json({newUser,msg:'Usuario Registrado Correctamente'});
 }
 
 //LOGIN

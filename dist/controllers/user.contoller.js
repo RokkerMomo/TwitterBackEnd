@@ -36,7 +36,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //GUARDAR USUARIO
     const newUser = new user_1.default(req.body);
     yield newUser.save();
-    return res.status(201).json(newUser);
+    return res.status(201).json({ newUser, msg: 'Usuario Registrado Correctamente' });
 });
 exports.signUp = signUp;
 //LOGIN
