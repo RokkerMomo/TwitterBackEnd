@@ -2,7 +2,6 @@ import { Request, Response } from "express"
 import usuarios, {IUser} from "../models/user"
 import jwt from 'jsonwebtoken'
 import config from "../config/config";
-import Notas, { Notes } from "../models/notas";
 import bcrypt from 'bcrypt'
 //FUNCION PARA CREAR TOKEN
 function createToken(user: IUser){
@@ -71,7 +70,7 @@ export const signIn = async (req: Request,res: Response): Promise<Response> => {
     }
 
     await usuarios.deleteOne({_id:req.body._id});
-    await Notas.deleteMany({owner:req.body._id});
+    // await Notas.deleteMany({owner:req.body._id});
     return res.status(201).json({msg:"Cuenta eliminada con exito"});
 
 }

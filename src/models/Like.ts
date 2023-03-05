@@ -1,31 +1,30 @@
 import { Model, Schema, Document, model } from "mongoose";
 
 //INTERFACE
-export interface Carpeta extends Document {
-    owner:string,
-    nombre:string,
+export interface Like extends Document {
+    idTweet:string,
+    idUsuario:string,
 }
 
 //EL ESQUEMA DE USUARIO
-const CarpetaSchema = new Schema ({
-    owner:{
+const LikeSchema = new Schema ({
+    idTweet:{
         type:String,
         unique:false,
         required:true,
         trim:true
     },
-    nombre:{
+    idUsuario:{
         type:String,
         unique:false,
         required:true,
         trim:true
-    },
+    }
 });
 
-CarpetaSchema.pre<Carpeta>('save', async function(next){
+LikeSchema.pre<Like>('save', async function(next){
     next();
 
 })
 
-
-export default model<Carpeta>('Carpetas', CarpetaSchema);
+export default model<Like>('Like', LikeSchema);

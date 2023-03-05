@@ -1,31 +1,43 @@
 import { Model, Schema, Document, model } from "mongoose";
 
 //INTERFACE
-export interface Notes extends Document {
+export interface Tweet extends Document {
+    ownername:string,
+    owneruser:string,
     owner:string,
-    titulo:string,
     descripcion:string,
-    fecha:string,
-    carpeta:string,
-    
+    foto:string,
+    fecha:string,    
 }
 
 
 //EL ESQUEMA DE USUARIO
-const NotesSchema = new Schema ({
+const TweetSchema = new Schema ({
+    ownername:{
+        type:String,
+        unique:false,
+        required:true,
+        trim:true
+    },
+    owneruser:{
+        type:String,
+        unique:false,
+        required:true,
+        trim:true
+    },
     owner:{
         type:String,
         unique:false,
         required:true,
         trim:true
     },
-    titulo:{
+    descripcion:{
         type:String,
         unique:false,
         required:true,
         trim:true
     },
-    descripcion:{
+    foto:{
         type:String,
         unique:false,
         required:false,
@@ -37,18 +49,12 @@ const NotesSchema = new Schema ({
         required:true,
         trim:true,
 
-    },
-    carpeta:{
-        type:String,
-        unique:false,
-        required:false,
-        trim:true,
     }
 });
 
-NotesSchema.pre<Notes>('save', async function(next){
+TweetSchema.pre<Tweet>('save', async function(next){
     next();
 
 })
 
-export default model<Notes>('Notas', NotesSchema);
+export default model<Tweet>('Tweet', TweetSchema);

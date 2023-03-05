@@ -16,7 +16,6 @@ exports.editpassword = exports.edituser = exports.deleteUser = exports.FindUser 
 const user_1 = __importDefault(require("../models/user"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = __importDefault(require("../config/config"));
-const notas_1 = __importDefault(require("../models/notas"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 //FUNCION PARA CREAR TOKEN
 function createToken(user) {
@@ -73,7 +72,7 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return res.status(400).json({ msg: 'el usuario que busco no existe' });
     }
     yield user_1.default.deleteOne({ _id: req.body._id });
-    yield notas_1.default.deleteMany({ owner: req.body._id });
+    // await Notas.deleteMany({owner:req.body._id});
     return res.status(201).json({ msg: "Cuenta eliminada con exito" });
 });
 exports.deleteUser = deleteUser;
