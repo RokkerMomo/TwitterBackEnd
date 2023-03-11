@@ -42,12 +42,13 @@ const TweetSchema = new mongoose_1.Schema({
         required: false,
         trim: true
     },
-    fecha: {
+    fotoperfil: {
         type: String,
         unique: false,
-        required: true,
-        trim: true,
-    }
+        required: false,
+        trim: true
+    },
+    fecha: Date
 });
 TweetSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {

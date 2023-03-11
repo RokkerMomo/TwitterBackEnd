@@ -18,7 +18,8 @@ router.post('/edituser', passport_1.default.authenticate('jwt', { session: false
 router.post('/editpass', passport_1.default.authenticate('jwt', { session: false }), user_contoller_1.editpassword);
 //endpoints para Tweets
 router.post('/newtweet', tweet_controller_1.newTweet);
-router.post('/showuserTweets', tweet_controller_1.showTweets);
+router.post('/showuserTweets', tweet_controller_1.showUserTweets);
+router.post('/showalltweets', tweet_controller_1.showAllTweets);
 router.post('/like', Like_controller_1.AddOrRemoveLike);
 router.post('/getlikes', Like_controller_1.GetLikes);
 exports.default = router;

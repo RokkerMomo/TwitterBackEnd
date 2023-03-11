@@ -7,7 +7,8 @@ export interface Tweet extends Document {
     owner:string,
     descripcion:string,
     foto:string,
-    fecha:string,    
+    fotoperfil:string,
+    fecha:Date,
 }
 
 
@@ -43,13 +44,13 @@ const TweetSchema = new Schema ({
         required:false,
         trim:true
     },
-    fecha:{
+    fotoperfil:{
         type:String,
         unique:false,
-        required:true,
-        trim:true,
-
-    }
+        required:false,
+        trim:true
+    },
+    fecha:Date
 });
 
 TweetSchema.pre<Tweet>('save', async function(next){

@@ -8,6 +8,7 @@ export interface IUser extends Document {
     usuario:string,
     password:string,
     bio:string,
+    foto:string,
     comparePassword:(p: object) => Response
 
     
@@ -38,6 +39,10 @@ const UserSchema = new Schema ({
         require:true
     },
     bio:{
+        type:String,
+        required:false
+    },
+    foto:{
         type:String,
         required:false
     }

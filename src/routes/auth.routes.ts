@@ -5,7 +5,7 @@ import passport, { session } from 'passport'
 const router = Router()
 
 import { deleteUser, editpassword, edituser, FindUser, signIn,signUp } from '../controllers/user.contoller';
-import { newTweet, showTweets } from '../controllers/tweet.controller';
+import { newTweet, showAllTweets, showUserTweets } from '../controllers/tweet.controller';
 import { AddOrRemoveLike, GetLikes } from '../controllers/Like.controller';
  
 //endpoints para users
@@ -18,7 +18,8 @@ router.post('/editpass',passport.authenticate('jwt', {session:false}),editpasswo
 
 //endpoints para Tweets
 router.post('/newtweet',newTweet);
-router.post('/showuserTweets',showTweets)
+router.post('/showuserTweets',showUserTweets)
+router.post('/showalltweets',showAllTweets)
 router.post('/like',AddOrRemoveLike)
 router.post('/getlikes',GetLikes)
 

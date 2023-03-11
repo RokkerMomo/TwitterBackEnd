@@ -12,9 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showTweets = exports.newTweet = void 0;
+exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showAllTweets = exports.showUserTweets = exports.newTweet = void 0;
 const tweet_1 = __importDefault(require("../models/tweet"));
-const user_1 = __importDefault(require("../models/user"));
 //Crear Tweet
 const newTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!req.body.descripcion) {
@@ -26,17 +25,24 @@ const newTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.status(201).json(newTweet);
 });
 exports.newTweet = newTweet;
-const showTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const Tweets = yield tweet_1.default.find({ owner: req.body.owner });
-    const user = yield user_1.default.findOne({ _id: req.body.owner });
-    const result = Tweets.concat(user);
+const showUserTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const Tweets = yield tweet_1.default.find({ owner: req.body.owner }).sort({ fecha: 'desc' });
     if (!Tweets) {
         return res.status(400).json({ msg: "el usuario no tiene Tweets" });
     }
     console.log(Tweets);
-    return res.status(201).json({ Tweets, user });
+    return res.status(201).json({ Tweets });
 });
-exports.showTweets = showTweets;
+exports.showUserTweets = showUserTweets;
+const showAllTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const Tweets = yield tweet_1.default.find().sort({ fecha: 'desc' });
+    if (!Tweets) {
+        return res.status(400).json({ msg: "el usuario no tiene Tweets" });
+    }
+    console.log(Tweets);
+    return res.status(201).json({ Tweets });
+});
+exports.showAllTweets = showAllTweets;
 const showTweetDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const nota = yield tweet_1.default.findOne({ _id: req.body._id });
     if (!nota) {

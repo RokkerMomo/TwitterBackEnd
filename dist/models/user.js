@@ -41,6 +41,10 @@ const UserSchema = new mongoose_1.Schema({
     bio: {
         type: String,
         required: false
+    },
+    foto: {
+        type: String,
+        required: false
     }
 });
 UserSchema.pre('save', function (next) {
