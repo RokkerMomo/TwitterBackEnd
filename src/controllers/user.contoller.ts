@@ -49,8 +49,7 @@ export const signIn = async (req: Request,res: Response): Promise<Response> => {
     return res.status(201).json({ user,token: createToken(user) });
     
    
-  };
-
+  };    
 
 
   export const FindUser = async (req: Request,res: Response): Promise<Response> => {

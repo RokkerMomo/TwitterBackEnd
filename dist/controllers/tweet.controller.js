@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showAllTweets = exports.showUserTweets = exports.newTweet = void 0;
+exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showAllTweets = exports.ShowFollowingTweets = exports.showUserTweets = exports.newTweet = void 0;
 const tweet_1 = __importDefault(require("../models/tweet"));
+const Seguimiento_1 = __importDefault(require("../models/Seguimiento"));
 //Crear Tweet
 const newTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!req.body.descripcion) {
@@ -34,6 +35,19 @@ const showUserTweets = (req, res) => __awaiter(void 0, void 0, void 0, function*
     return res.status(201).json({ Tweets });
 });
 exports.showUserTweets = showUserTweets;
+const ShowFollowingTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const busqueda = yield Seguimiento_1.default.find({ idSeguidor: req.body.userid });
+    let result = [];
+    for (let i = 0; i < busqueda.length; i++) {
+        const tweets = yield tweet_1.default.find({ owner: busqueda[i].idSeguido });
+        result = result.concat(tweets);
+    }
+    let allTweets = result.sort(function (a, b) {
+        return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+    });
+    return res.status(200).json({ allTweets });
+});
+exports.ShowFollowingTweets = ShowFollowingTweets;
 const showAllTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const Tweets = yield tweet_1.default.find().sort({ fecha: 'desc' });
     if (!Tweets) {

@@ -20,3 +20,14 @@ export const GetLikes = async (req: Request,res: Response): Promise<Response> =>
     const result = await Like.find({ idTweet:req.body.idTweet});
     return res.status(201).json(result.length)
 }
+
+export const CheckLike = async (req: Request,res: Response): Promise<Response> =>{
+
+    const check = await Like.find({ idTweet:req.body.idTweet, idUsuario:req.body.idUsuario });
+    console.log(check.length)
+    if (check.length==0) {
+    return res.status(201).json({status:'false'});
+
+    }
+    return  res.status(201).json({status:'true'});
+}

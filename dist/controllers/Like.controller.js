@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetLikes = exports.AddOrRemoveLike = void 0;
+exports.CheckLike = exports.GetLikes = exports.AddOrRemoveLike = void 0;
 const Like_1 = __importDefault(require("../models/Like"));
 //Crear Tweet
 const AddOrRemoveLike = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -33,3 +33,12 @@ const GetLikes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.status(201).json(result.length);
 });
 exports.GetLikes = GetLikes;
+const CheckLike = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const check = yield Like_1.default.find({ idTweet: req.body.idTweet, idUsuario: req.body.idUsuario });
+    console.log(check.length);
+    if (check.length == 0) {
+        return res.status(201).json({ status: 'false' });
+    }
+    return res.status(201).json({ status: 'true' });
+});
+exports.CheckLike = CheckLike;

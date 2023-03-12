@@ -14,7 +14,7 @@ const mongoose_1 = require("mongoose");
 const SeguirSchema = new mongoose_1.Schema({
     idSeguido: {
         type: String,
-        unique: true,
+        unique: false,
         required: true,
         trim: true
     },
