@@ -28,5 +28,6 @@ router.post('/checklike', Like_controller_1.CheckLike);
 //endpoints para followers
 router.post('/follow', Seguimiento_controller_1.followorunfollow);
 router.post('/getfollowers', Seguimiento_controller_1.GetFollowers);
+router.post('/getFollowing', Seguimiento_controller_1.GetFollowing);
 router.post('/checkfollow', Seguimiento_controller_1.CheckFollow);
 exports.default = router;

@@ -7,7 +7,7 @@ const router = Router()
 import { deleteUser, editpassword, edituser, FindUser, signIn,signUp } from '../controllers/user.contoller';
 import { newTweet, showAllTweets, ShowFollowingTweets, showUserTweets } from '../controllers/tweet.controller';
 import { AddOrRemoveLike, CheckLike, GetLikes } from '../controllers/Like.controller';
-import { CheckFollow, followorunfollow, GetFollowers } from '../controllers/Seguimiento.controller';
+import { CheckFollow, followorunfollow, GetFollowers, GetFollowing } from '../controllers/Seguimiento.controller';
  
 //endpoints para users
 router.post('/signup',signUp)
@@ -30,6 +30,7 @@ router.post('/checklike',CheckLike)
 //endpoints para followers
 router.post('/follow',followorunfollow)
 router.post('/getfollowers',GetFollowers)
+router.post('/getFollowing',GetFollowing)
 router.post('/checkfollow',CheckFollow)
 
 export default router;

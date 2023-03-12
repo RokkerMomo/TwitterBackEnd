@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckFollow = exports.GetFollowers = exports.followorunfollow = void 0;
+exports.CheckFollow = exports.GetFollowing = exports.GetFollowers = exports.followorunfollow = void 0;
 const Seguimiento_1 = __importDefault(require("../models/Seguimiento"));
 const followorunfollow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield Seguimiento_1.default.find({ idSeguido: req.body.idSeguido, idSeguidor: req.body.idSeguidor });
@@ -32,6 +32,11 @@ const GetFollowers = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     return res.status(201).json(result.length);
 });
 exports.GetFollowers = GetFollowers;
+const GetFollowing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Seguimiento_1.default.find({ idSeguidor: req.body.idSeguidor });
+    return res.status(201).json(result.length);
+});
+exports.GetFollowing = GetFollowing;
 const CheckFollow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const check = yield Seguimiento_1.default.find({ idSeguido: req.body.idSeguido, idSeguidor: req.body.idSeguidor });
     console.log(check.length);

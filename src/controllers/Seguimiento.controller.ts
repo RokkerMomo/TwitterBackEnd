@@ -20,6 +20,11 @@ export const GetFollowers = async (req: Request,res: Response): Promise<Response
     return res.status(201).json(result.length)
 }
 
+export const GetFollowing = async (req: Request,res: Response): Promise<Response> =>{
+    const result = await Seguir.find({ idSeguidor:req.body.idSeguidor});
+    return res.status(201).json(result.length)
+}
+
 export const CheckFollow = async (req: Request,res: Response): Promise<Response> =>{
 
     const check = await Seguir.find({ idSeguido:req.body.idSeguido, idSeguidor:req.body.idSeguidor });
