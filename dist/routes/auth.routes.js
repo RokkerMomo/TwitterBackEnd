@@ -14,8 +14,7 @@ const Seguimiento_controller_1 = require("../controllers/Seguimiento.controller"
 router.post('/signup', user_contoller_1.signUp);
 router.post('/signin', user_contoller_1.signIn);
 router.post('/finduser', user_contoller_1.FindUser);
-router.post('/deleteuser', passport_1.default.authenticate('jwt', { session: false }), user_contoller_1.deleteUser);
-router.post('/edituser', passport_1.default.authenticate('jwt', { session: false }), user_contoller_1.edituser);
+router.post('/edituser', user_contoller_1.edituser);
 router.post('/editpass', passport_1.default.authenticate('jwt', { session: false }), user_contoller_1.editpassword);
 //endpoints para Tweets
 router.post('/newtweet', tweet_controller_1.newTweet);

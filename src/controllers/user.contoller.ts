@@ -3,6 +3,7 @@ import usuarios, {IUser} from "../models/user"
 import jwt from 'jsonwebtoken'
 import config from "../config/config";
 import bcrypt from 'bcrypt'
+import tweet from "../models/tweet";
 //FUNCION PARA CREAR TOKEN
 function createToken(user: IUser){
 return jwt.sign({id:user.id, usuario:user.usuario},config.jwtSecret,{
@@ -76,10 +77,11 @@ export const signIn = async (req: Request,res: Response): Promise<Response> => {
 
 
 export const edituser = async (req:Request, res: Response): Promise<Response>=>{
-  const user = await usuarios.updateOne({_id:req.body._id},{nombre:req.body.nombre, apellido:req.body.apellido, usuario:req.body.usuario});
+  const user = await usuarios.updateOne({_id:req.body._id},{nombre:req.body.nombre, apellido:req.body.apellido, usuario:req.body.usuario, bio:req.body.bio});
   if (!user) {
       return res.status(400).json({msg:"Error al intentar editar perfil"});
   }
+  const tweets = await tweet.updateMany({owner:req.body._id},{ownername:`${req.body.nombre} ${req.body.apellido}`, owneruser:req.body.apellido})
 
   return res.status(201).json({msg:"Guardado con exito"});
 }

@@ -13,8 +13,7 @@ import { CheckFollow, followorunfollow, GetFollowers, GetFollowing } from '../co
 router.post('/signup',signUp)
 router.post('/signin',signIn)
 router.post('/finduser',FindUser)
-router.post('/deleteuser',passport.authenticate('jwt', {session: false}),deleteUser)
-router.post('/edituser', passport.authenticate('jwt', {session:false}),edituser)
+router.post('/edituser',edituser)
 router.post('/editpass',passport.authenticate('jwt', {session:false}),editpassword)
 
 //endpoints para Tweets
