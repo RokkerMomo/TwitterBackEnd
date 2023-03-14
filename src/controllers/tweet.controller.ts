@@ -4,7 +4,7 @@ import Seguir from "../models/Seguimiento";
 
 //Crear Tweet
 export const newTweet = async (req: Request,res: Response): Promise<Response> =>{
-    if (!req.body.descripcion||!req.body.foto) {
+    if (!req.body.descripcion&&!req.body.foto) {
         return res.status(400).json({ msg: "El Tweet No puede estar Vacio" });
       }
     //GUARDAR Tweet

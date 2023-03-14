@@ -17,7 +17,7 @@ const tweet_1 = __importDefault(require("../models/tweet"));
 const Seguimiento_1 = __importDefault(require("../models/Seguimiento"));
 //Crear Tweet
 const newTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body.descripcion || !req.body.foto) {
+    if (!req.body.descripcion && !req.body.foto) {
         return res.status(400).json({ msg: "El Tweet No puede estar Vacio" });
     }
     //GUARDAR Tweet
