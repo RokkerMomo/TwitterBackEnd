@@ -82,7 +82,7 @@ const edituser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user) {
         return res.status(400).json({ msg: "Error al intentar editar perfil" });
     }
-    const tweets = yield tweet_1.default.updateMany({ owner: req.body._id }, { ownername: `${req.body.nombre} ${req.body.apellido}`, owneruser: req.body.apellido });
+    const tweets = yield tweet_1.default.updateMany({ owner: req.body._id }, { ownername: `${req.body.nombre} ${req.body.apellido}`, owneruser: req.body.usuario });
     return res.status(201).json({ msg: "Guardado con exito" });
 });
 exports.edituser = edituser;
