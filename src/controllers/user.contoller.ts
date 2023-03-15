@@ -11,7 +11,7 @@ return jwt.sign({id:user.id, usuario:user.usuario},config.jwtSecret,{
 });
 }
 
-
+ 
 
 //REGISTRO
 export const signUp = async (req: Request,res: Response): Promise<Response> =>{

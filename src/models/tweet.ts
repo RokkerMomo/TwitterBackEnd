@@ -35,7 +35,7 @@ const TweetSchema = new Schema ({
     descripcion:{
         type:String,
         unique:false,
-        required:true,
+        required:false,
         trim:true
     },
     foto:{

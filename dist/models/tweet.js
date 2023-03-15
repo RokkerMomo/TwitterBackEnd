@@ -33,7 +33,7 @@ const TweetSchema = new mongoose_1.Schema({
     descripcion: {
         type: String,
         unique: false,
-        required: true,
+        required: false,
         trim: true
     },
     foto: {
