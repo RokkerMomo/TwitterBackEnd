@@ -5,9 +5,10 @@ import passport, { session } from 'passport'
 const router = Router()
 
 import { deleteUser, editpassword, edituser, FindUser, signIn,signUp } from '../controllers/user.contoller';
-import { newTweet, showAllTweets, ShowFollowingTweets, showUserTweets } from '../controllers/tweet.controller';
+import { newTweet, showAllTweets, ShowFollowingTweets, showSingleTweet, showUserTweets } from '../controllers/tweet.controller';
 import { AddOrRemoveLike, CheckLike, GetLikes } from '../controllers/Like.controller';
 import { CheckFollow, followorunfollow, GetFollowers, GetFollowing } from '../controllers/Seguimiento.controller';
+import { getComentarios, GetNumeroDeComentarios, NuevoComentario } from '../controllers/comentario.controller';
  
 //endpoints para users
 router.post('/signup',signUp)
@@ -21,6 +22,7 @@ router.post('/newtweet',newTweet);
 router.post('/showuserTweets',showUserTweets)
 router.post('/showfollowing',ShowFollowingTweets)
 router.post('/showalltweets',showAllTweets)
+router.post('/showSingleTweet',showSingleTweet)
 router.post('/like',AddOrRemoveLike)
 router.post('/getlikes',GetLikes)
 router.post('/checklike',CheckLike)
@@ -31,5 +33,10 @@ router.post('/follow',followorunfollow)
 router.post('/getfollowers',GetFollowers)
 router.post('/getFollowing',GetFollowing)
 router.post('/checkfollow',CheckFollow)
+
+//endpoints para comentarios
+router.post('/newComentario',NuevoComentario)
+router.post('/getcomentarios',getComentarios)
+router.post('/getcomentariosnumber',GetNumeroDeComentarios)
 
 export default router;

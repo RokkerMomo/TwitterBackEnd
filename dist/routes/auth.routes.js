@@ -10,6 +10,7 @@ const user_contoller_1 = require("../controllers/user.contoller");
 const tweet_controller_1 = require("../controllers/tweet.controller");
 const Like_controller_1 = require("../controllers/Like.controller");
 const Seguimiento_controller_1 = require("../controllers/Seguimiento.controller");
+const comentario_controller_1 = require("../controllers/comentario.controller");
 //endpoints para users
 router.post('/signup', user_contoller_1.signUp);
 router.post('/signin', user_contoller_1.signIn);
@@ -21,6 +22,7 @@ router.post('/newtweet', tweet_controller_1.newTweet);
 router.post('/showuserTweets', tweet_controller_1.showUserTweets);
 router.post('/showfollowing', tweet_controller_1.ShowFollowingTweets);
 router.post('/showalltweets', tweet_controller_1.showAllTweets);
+router.post('/showSingleTweet', tweet_controller_1.showSingleTweet);
 router.post('/like', Like_controller_1.AddOrRemoveLike);
 router.post('/getlikes', Like_controller_1.GetLikes);
 router.post('/checklike', Like_controller_1.CheckLike);
@@ -29,4 +31,8 @@ router.post('/follow', Seguimiento_controller_1.followorunfollow);
 router.post('/getfollowers', Seguimiento_controller_1.GetFollowers);
 router.post('/getFollowing', Seguimiento_controller_1.GetFollowing);
 router.post('/checkfollow', Seguimiento_controller_1.CheckFollow);
+//endpoints para comentarios
+router.post('/newComentario', comentario_controller_1.NuevoComentario);
+router.post('/getcomentarios', comentario_controller_1.getComentarios);
+router.post('/getcomentariosnumber', comentario_controller_1.GetNumeroDeComentarios);
 exports.default = router;

@@ -12,13 +12,24 @@ export const newTweet = async (req: Request,res: Response): Promise<Response> =>
     await newTweet.save();
     return res.status(201).json(newTweet);
 }
-
+ 
  
 export const showUserTweets = async (req: Request, res: Response): Promise<Response>=>{
     
     const Tweets = await Tweet.find({owner:req.body.owner}).sort({fecha:'desc'});
     if (!Tweets) {
         return res.status(400).json({msg:"el usuario no tiene Tweets"})
+    }
+    console.log(Tweets);
+    return res.status(201).json({Tweets});
+
+}
+
+export const showSingleTweet = async (req: Request, res: Response): Promise<Response>=>{
+    
+    const Tweets = await Tweet.findOne({_id:req.body.idTweet});
+    if (!Tweets) {
+        return res.status(400).json({msg:"El Tweet que busco no existe"})
     }
     console.log(Tweets);
     return res.status(201).json({Tweets});
