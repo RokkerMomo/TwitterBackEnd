@@ -5,7 +5,7 @@ import passport, { session } from 'passport'
 const router = Router()
 
 import { deleteUser, editpassword, edituser, FindUser, signIn,signUp } from '../controllers/user.contoller';
-import { newTweet, search, showAllTweets, ShowFollowingTweets, showSingleTweet, showUserTweets } from '../controllers/tweet.controller';
+import { deleteTweet, newTweet, search, showAllTweets, ShowFollowingTweets, showSingleTweet, showUserTweets } from '../controllers/tweet.controller';
 import { AddOrRemoveLike, CheckLike, GetLikes } from '../controllers/Like.controller';
 import { CheckFollow, followorunfollow, GetFollowers, GetFollowing } from '../controllers/Seguimiento.controller';
 import { getComentarios, GetNumeroDeComentarios, NuevoComentario } from '../controllers/comentario.controller';
@@ -27,6 +27,7 @@ router.post('/search',search)
 router.post('/like',AddOrRemoveLike)
 router.post('/getlikes',GetLikes)
 router.post('/checklike',CheckLike)
+router.post('/deleteTweet',deleteTweet)
 
 
 //endpoints para followers

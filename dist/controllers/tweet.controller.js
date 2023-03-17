@@ -17,7 +17,7 @@ const tweet_1 = __importDefault(require("../models/tweet"));
 const Seguimiento_1 = __importDefault(require("../models/Seguimiento"));
 //Crear Tweet
 const newTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body.descripcion && !req.body.foto) {
+    if (!req.body.descripcion && req.body.foto == 'undefined') {
         return res.status(400).json({ msg: "El Tweet No puede estar Vacio" });
     }
     //GUARDAR Tweet
@@ -94,12 +94,12 @@ const editTweetContent = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.editTweetContent = editTweetContent;
 const deleteTweet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const nota = yield tweet_1.default.findOne({ _id: req.body._id });
+    const nota = yield tweet_1.default.findOne({ _id: req.body.idTweet });
     if (!nota) {
-        return res.status(400).json({ msg: 'La nota que busco no existe' });
+        return res.status(400).json({ msg: 'El Tweet que busco no existe' });
     }
-    const notas = yield tweet_1.default.deleteOne({ _id: req.body._id });
+    const notas = yield tweet_1.default.deleteOne({ _id: req.body.idTweet });
     console.log(notas);
-    return res.status(201).json({ msg: "Nota eliminada con exito" });
+    return res.status(201).json({ msg: "Tweet eliminado con exito" });
 });
 exports.deleteTweet = deleteTweet;

@@ -4,7 +4,7 @@ import Seguir from "../models/Seguimiento";
 
 //Crear Tweet
 export const newTweet = async (req: Request,res: Response): Promise<Response> =>{
-    if (!req.body.descripcion&&!req.body.foto) {
+    if (!req.body.descripcion&&req.body.foto=='undefined') {
         return res.status(400).json({ msg: "El Tweet No puede estar Vacio" });
       }
     //GUARDAR Tweet
@@ -103,13 +103,13 @@ export const editTweetContent = async (req: Request, res: Response): Promise<Res
 
 export const deleteTweet = async (req: Request, res: Response): Promise<Response>=>{
 
-    const nota = await Tweet.findOne({_id:req.body._id});
+    const nota = await Tweet.findOne({_id:req.body.idTweet});
     if(!nota){
-        return res.status(400).json({msg:'La nota que busco no existe'});
+        return res.status(400).json({msg:'El Tweet que busco no existe'});
     }
 
-    const notas = await Tweet.deleteOne({_id:req.body._id});
+    const notas = await Tweet.deleteOne({_id:req.body.idTweet});
     console.log(notas);
-    return res.status(201).json({msg:"Nota eliminada con exito"});
+    return res.status(201).json({msg:"Tweet eliminado con exito"});
 
 }

@@ -27,6 +27,7 @@ router.post('/search', tweet_controller_1.search);
 router.post('/like', Like_controller_1.AddOrRemoveLike);
 router.post('/getlikes', Like_controller_1.GetLikes);
 router.post('/checklike', Like_controller_1.CheckLike);
+router.post('/deleteTweet', tweet_controller_1.deleteTweet);
 //endpoints para followers
 router.post('/follow', Seguimiento_controller_1.followorunfollow);
 router.post('/getfollowers', Seguimiento_controller_1.GetFollowers);
