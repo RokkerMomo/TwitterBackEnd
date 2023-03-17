@@ -50,6 +50,7 @@ const TweetSchema = new mongoose_1.Schema({
     },
     fecha: Date
 });
+TweetSchema.index({ '$**': 'text' });
 TweetSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         next();

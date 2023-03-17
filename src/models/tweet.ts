@@ -53,6 +53,8 @@ const TweetSchema = new Schema ({
     fecha:Date
 });
 
+TweetSchema.index({'$**': 'text'});
+
 TweetSchema.pre<Tweet>('save', async function(next){
     next();
 

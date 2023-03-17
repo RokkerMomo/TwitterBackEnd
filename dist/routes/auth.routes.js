@@ -23,6 +23,7 @@ router.post('/showuserTweets', tweet_controller_1.showUserTweets);
 router.post('/showfollowing', tweet_controller_1.ShowFollowingTweets);
 router.post('/showalltweets', tweet_controller_1.showAllTweets);
 router.post('/showSingleTweet', tweet_controller_1.showSingleTweet);
+router.post('/search', tweet_controller_1.search);
 router.post('/like', Like_controller_1.AddOrRemoveLike);
 router.post('/getlikes', Like_controller_1.GetLikes);
 router.post('/checklike', Like_controller_1.CheckLike);

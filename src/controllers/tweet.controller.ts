@@ -36,6 +36,17 @@ export const showSingleTweet = async (req: Request, res: Response): Promise<Resp
 
 }
 
+export const search = async (req: Request, res: Response): Promise<Response>=>{
+    
+    const Tweets = await Tweet.find({$text: {$search: req.body.descripcion}});
+    if (!Tweets) {
+        return res.status(400).json({msg:"El Tweet que busco no existe"})
+    }
+    console.log(Tweets);
+    return res.status(201).json({Tweets});
+
+}
+
 export const ShowFollowingTweets = async (req: Request, res: Response): Promise<Response>=>{
 
     const busqueda = await Seguir.find({idSeguidor:req.body.userid})

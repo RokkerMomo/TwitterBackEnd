@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showAllTweets = exports.ShowFollowingTweets = exports.showSingleTweet = exports.showUserTweets = exports.newTweet = void 0;
+exports.deleteTweet = exports.editTweetContent = exports.showTweetDetails = exports.showAllTweets = exports.ShowFollowingTweets = exports.search = exports.showSingleTweet = exports.showUserTweets = exports.newTweet = void 0;
 const tweet_1 = __importDefault(require("../models/tweet"));
 const Seguimiento_1 = __importDefault(require("../models/Seguimiento"));
 //Crear Tweet
@@ -44,6 +44,15 @@ const showSingleTweet = (req, res) => __awaiter(void 0, void 0, void 0, function
     return res.status(201).json({ Tweets });
 });
 exports.showSingleTweet = showSingleTweet;
+const search = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const Tweets = yield tweet_1.default.find({ $text: { $search: req.body.descripcion } });
+    if (!Tweets) {
+        return res.status(400).json({ msg: "El Tweet que busco no existe" });
+    }
+    console.log(Tweets);
+    return res.status(201).json({ Tweets });
+});
+exports.search = search;
 const ShowFollowingTweets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const busqueda = yield Seguimiento_1.default.find({ idSeguidor: req.body.userid });
     let result = [];
