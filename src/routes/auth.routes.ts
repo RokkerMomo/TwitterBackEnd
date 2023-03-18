@@ -13,32 +13,32 @@ import { getComentarios, GetNumeroDeComentarios, NuevoComentario } from '../cont
 //endpoints para users
 router.post('/signup',signUp)
 router.post('/signin',signIn)
-router.post('/finduser',FindUser)
-router.post('/edituser',edituser)
+router.post('/finduser',passport.authenticate('jwt', {session:false}),FindUser)
+router.post('/edituser',passport.authenticate('jwt', {session:false}),edituser)
 router.post('/editpass',passport.authenticate('jwt', {session:false}),editpassword)
 
 //endpoints para Tweets
-router.post('/newtweet',newTweet);
-router.post('/showuserTweets',showUserTweets)
-router.post('/showfollowing',ShowFollowingTweets)
-router.post('/showalltweets',showAllTweets)
-router.post('/showSingleTweet',showSingleTweet)
-router.post('/search',search)
-router.post('/like',AddOrRemoveLike)
-router.post('/getlikes',GetLikes)
-router.post('/checklike',CheckLike)
-router.post('/deleteTweet',deleteTweet)
+router.post('/newtweet',passport.authenticate('jwt', {session:false}),newTweet);
+router.post('/showuserTweets',passport.authenticate('jwt', {session:false}),showUserTweets)
+router.post('/showfollowing',passport.authenticate('jwt', {session:false}),ShowFollowingTweets)
+router.post('/showalltweets',passport.authenticate('jwt', {session:false}),showAllTweets)
+router.post('/showSingleTweet',passport.authenticate('jwt', {session:false}),showSingleTweet)
+router.post('/search',passport.authenticate('jwt', {session:false}),search)
+router.post('/like',passport.authenticate('jwt', {session:false}),AddOrRemoveLike)
+router.post('/getlikes',passport.authenticate('jwt', {session:false}),GetLikes)
+router.post('/checklike',passport.authenticate('jwt', {session:false}),CheckLike)
+router.post('/deleteTweet',passport.authenticate('jwt', {session:false}),deleteTweet)
 
 
 //endpoints para followers
-router.post('/follow',followorunfollow)
-router.post('/getfollowers',GetFollowers)
-router.post('/getFollowing',GetFollowing)
-router.post('/checkfollow',CheckFollow)
+router.post('/follow',passport.authenticate('jwt', {session:false}),followorunfollow)
+router.post('/getfollowers',passport.authenticate('jwt', {session:false}),GetFollowers)
+router.post('/getFollowing',passport.authenticate('jwt', {session:false}),GetFollowing)
+router.post('/checkfollow',passport.authenticate('jwt', {session:false}),CheckFollow)
 
 //endpoints para comentarios
-router.post('/newComentario',NuevoComentario)
-router.post('/getcomentarios',getComentarios)
-router.post('/getcomentariosnumber',GetNumeroDeComentarios)
+router.post('/newComentario',passport.authenticate('jwt', {session:false}),NuevoComentario)
+router.post('/getcomentarios',passport.authenticate('jwt', {session:false}),getComentarios)
+router.post('/getcomentariosnumber',passport.authenticate('jwt', {session:false}),GetNumeroDeComentarios)
 
 export default router;
