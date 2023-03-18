@@ -40,6 +40,6 @@ router.post('/checkfollow',passport.authenticate('jwt', {session:false}),CheckFo
 router.post('/newComentario',passport.authenticate('jwt', {session:false}),NuevoComentario)
 router.post('/getcomentarios',passport.authenticate('jwt', {session:false}),getComentarios)
 router.post('/getcomentariosnumber',passport.authenticate('jwt', {session:false}),GetNumeroDeComentarios)
-router.post('/deletecomentario',DeleteComentario)
+router.post('/deletecomentario',passport.authenticate('jwt', {session:false}),DeleteComentario)
 
 export default router;

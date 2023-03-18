@@ -37,5 +37,5 @@ router.post('/checkfollow', passport_1.default.authenticate('jwt', { session: fa
 router.post('/newComentario', passport_1.default.authenticate('jwt', { session: false }), comentario_controller_1.NuevoComentario);
 router.post('/getcomentarios', passport_1.default.authenticate('jwt', { session: false }), comentario_controller_1.getComentarios);
 router.post('/getcomentariosnumber', passport_1.default.authenticate('jwt', { session: false }), comentario_controller_1.GetNumeroDeComentarios);
-router.post('/deletecomentario', comentario_controller_1.DeleteComentario);
+router.post('/deletecomentario', passport_1.default.authenticate('jwt', { session: false }), comentario_controller_1.DeleteComentario);
 exports.default = router;
