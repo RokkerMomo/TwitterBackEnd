@@ -8,7 +8,7 @@ import { deleteUser, editpassword, edituser, FindUser, signIn,signUp } from '../
 import { deleteTweet, newTweet, search, showAllTweets, ShowFollowingTweets, showSingleTweet, showUserTweets } from '../controllers/tweet.controller';
 import { AddOrRemoveLike, CheckLike, GetLikes } from '../controllers/Like.controller';
 import { CheckFollow, followorunfollow, GetFollowers, GetFollowing } from '../controllers/Seguimiento.controller';
-import { getComentarios, GetNumeroDeComentarios, NuevoComentario } from '../controllers/comentario.controller';
+import { DeleteComentario, getComentarios, GetNumeroDeComentarios, NuevoComentario } from '../controllers/comentario.controller';
  
 //endpoints para users
 router.post('/signup',signUp)
@@ -40,5 +40,6 @@ router.post('/checkfollow',passport.authenticate('jwt', {session:false}),CheckFo
 router.post('/newComentario',passport.authenticate('jwt', {session:false}),NuevoComentario)
 router.post('/getcomentarios',passport.authenticate('jwt', {session:false}),getComentarios)
 router.post('/getcomentariosnumber',passport.authenticate('jwt', {session:false}),GetNumeroDeComentarios)
+router.post('/deletecomentario',DeleteComentario)
 
 export default router;

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetNumeroDeComentarios = exports.getComentarios = exports.NuevoComentario = void 0;
+exports.DeleteComentario = exports.GetNumeroDeComentarios = exports.getComentarios = exports.NuevoComentario = void 0;
 const comentario_1 = __importDefault(require("../models/comentario"));
 //Crear Tweet
 const NuevoComentario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,3 +34,13 @@ const GetNumeroDeComentarios = (req, res) => __awaiter(void 0, void 0, void 0, f
     return res.status(201).json(result.length);
 });
 exports.GetNumeroDeComentarios = GetNumeroDeComentarios;
+const DeleteComentario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const nota = yield comentario_1.default.findOne({ _id: req.body.idTweet });
+    if (!nota) {
+        return res.status(400).json({ msg: 'El Comentario que busco no existe' });
+    }
+    const notas = yield comentario_1.default.deleteOne({ _id: req.body.idTweet });
+    console.log(notas);
+    return res.status(201).json({ msg: "Comentario eliminado con exito" });
+});
+exports.DeleteComentario = DeleteComentario;

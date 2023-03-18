@@ -21,3 +21,16 @@ export const GetNumeroDeComentarios = async (req: Request,res: Response): Promis
     const result = await comentario.find({ idTweet:req.body.idTweet});
     return res.status(201).json(result.length)
 }
+
+export const DeleteComentario = async (req: Request, res: Response): Promise<Response>=>{
+
+    const nota = await comentario.findOne({_id:req.body.idTweet});
+    if(!nota){
+        return res.status(400).json({msg:'El Comentario que busco no existe'});
+    }
+
+    const notas = await comentario.deleteOne({_id:req.body.idTweet});
+    console.log(notas);
+    return res.status(201).json({msg:"Comentario eliminado con exito"});
+
+}
